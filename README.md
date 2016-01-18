@@ -14,7 +14,7 @@ Then you can enjoy the library!
 In order to make requests to the API you must first run the following function:
 
 ```
-var client = Vimeo(clientID, clientSecret, accessToken)
+var client = Vimeo("clientID", "clientSecret", "accessToken")
 ```
 
 You should provide your client ID and secret. They can be found on your app page under the Authentication tab. You can create an app [here](https://developer.vimeo.com/apps).
@@ -41,16 +41,16 @@ There are two ways to make requests to the Vimeo API - through authenticated and
   This token uses the user. It interacts on behalf of the authenticated user. In order to generate one, you should:
 
   ```
-  client.GenerateАuthAccessToken(scopes, redirectURI, state)
+  client.GenerateАuthAccessToken(scopes, "redirectURI", "state")
   ```
   Where scopes look like this: `[]string{"public"}`.
 
-Name         |  Description
--------------|-------------
-redirectURI  | This must be required, and must match your app callback URL
-state        | A unique value which the client will return alongside access tokens
+|  Name         |  Description
+|--------------|-------------
+|  redirectURI  | This must be required, and must match your app callback URL
+|  state        | A unique value which the client will return alongside access tokens
 
-Both values should be strings.
+
 
 ### Make a request
 When you have all ready making a request is really simple:
