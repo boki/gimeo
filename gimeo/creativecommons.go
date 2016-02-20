@@ -6,6 +6,7 @@ import (
 	. "github.com/julianedialkova/gimeo/data"
 )
 
+//GetCreativeCommons gets all valid creative commons licenses
 func (c *Client) GetCreativeCommons(params *Parameters) (*CommonsData, error) {
 	resp, err := c.Get("/creativecommons", params)
 
@@ -16,6 +17,6 @@ func (c *Client) GetCreativeCommons(params *Parameters) (*CommonsData, error) {
 
 	data := &CommonsData{}
 
-	err = c.processRequestData(200,resp, data)
+	err = c.processRequestData(200, resp, data)
 	return data, err
 }

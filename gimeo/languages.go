@@ -6,6 +6,7 @@ import (
 	. "github.com/julianedialkova/gimeo/data"
 )
 
+// GetLanguages lists all valid video languages
 func (c *Client) GetLanguages(params *Parameters) (*CommonsData, error) {
 	resp, err := c.Get("/languages", params)
 
@@ -16,6 +17,6 @@ func (c *Client) GetLanguages(params *Parameters) (*CommonsData, error) {
 
 	data := &CommonsData{}
 
-	err = c.processRequestData(200,resp, data)
+	err = c.processRequestData(200, resp, data)
 	return data, err
 }

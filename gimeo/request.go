@@ -10,9 +10,11 @@ import (
 	"strings"
 )
 
+//Parameters given to the functions
 type Parameters map[string]string
 
-func (params Parameters) ToUrlValues() url.Values {
+// BuildRequestURL parses Parameters to url.Values
+func (params Parameters) BuildRequestURL() url.Values {
 	result := url.Values{}
 	for key, value := range params {
 		result.Set(key, value)
@@ -20,13 +22,16 @@ func (params Parameters) ToUrlValues() url.Values {
 	return result
 }
 
+// Headers structure
 type Headers map[string]string
 
+//Request structure
 type Request struct {
 	Hostname string
 	Headers  *Headers
 }
 
+// DefaultRequest contains the default values, used by all requests
 var DefaultRequest = &Request{
 	Hostname: "https://api.vimeo.com",
 	Headers: &Headers{
@@ -35,7 +40,8 @@ var DefaultRequest = &Request{
 	},
 }
 
-func buildRequestUrl(urlStr string) string {
+//BuildRequestURL builds a request URL from host and path
+func BuildRequestURL(urlStr string) string {
 	return fmt.Sprintf("%s/%s", DefaultRequest.Hostname, strings.TrimPrefix(urlStr, "/"))
 }
 
@@ -44,7 +50,8 @@ func performRequest(req *http.Request) (*http.Response, error) {
 	return client.Do(req)
 }
 
-func (c *Client) applyDefaults(req *http.Request) {
+//ApplyDefaults applies the default values from DefaultRequest to our request
+func (c *Client) ApplyDefaults(req *http.Request) {
 	for key, value := range *(DefaultRequest.Headers) {
 		req.Header.Set(key, value)
 	}
@@ -57,19 +64,20 @@ func (c *Client) applyDefaults(req *http.Request) {
 	req.Header.Set("Authorization", fmt.Sprintf("bearer %s", c.accessToken))
 }
 
+// Get performs a GET request to the Vimeo API with urlStr path and params as body.
 func (c *Client) Get(urlStr string, params *Parameters) (*http.Response, error) {
 
-	requestUri := buildRequestUrl(urlStr)
-	req, err := http.NewRequest("GET", requestUri, nil)
+	requestURI := BuildRequestURL(urlStr)
+	req, err := http.NewRequest("GET", requestURI, nil)
 
 	if err != nil {
 		return nil, err
 	}
 
-	c.applyDefaults(req)
-	fmt.Printf("Performing GET request to %s\n", requestUri)
+	c.ApplyDefaults(req)
+	fmt.Printf("Performing GET request to %s\n", requestURI)
 	if params != nil {
-		encoded := params.ToUrlValues()
+		encoded := params.BuildRequestURL()
 		req.URL.RawQuery = encoded.Encode()
 	}
 
@@ -77,73 +85,77 @@ func (c *Client) Get(urlStr string, params *Parameters) (*http.Response, error) 
 
 }
 
+// Patch performs a PATCH request to the Vimeo API with urlStr path and params as body.
 func (c *Client) Patch(urlStr string, params *Parameters) (*http.Response, error) {
 
-	requestUri := buildRequestUrl(urlStr)
+	requestURI := BuildRequestURL(urlStr)
 
-	encoded := params.ToUrlValues()
+	encoded := params.BuildRequestURL()
 	body := encoded.Encode()
 
-	req, err := http.NewRequest("PATCH", requestUri, strings.NewReader(body))
+	req, err := http.NewRequest("PATCH", requestURI, strings.NewReader(body))
 
 	if err != nil {
 		return nil, err
 	}
-	c.applyDefaults(req)
+	c.ApplyDefaults(req)
 
-	fmt.Printf("Performing PATCH request to %s\n", requestUri)
+	fmt.Printf("Performing PATCH request to %s\n", requestURI)
 
 	return performRequest(req)
 }
 
+// Post performs a POST request to the Vimeo API with urlStr path and params as body.
 func (c *Client) Post(urlStr string, params *Parameters) (*http.Response, error) {
 
-	requestUri := buildRequestUrl(urlStr)
+	requestURI := BuildRequestURL(urlStr)
 
-	encoded := params.ToUrlValues()
+	encoded := params.BuildRequestURL()
 	body := encoded.Encode()
 
-	req, err := http.NewRequest("POST", requestUri, strings.NewReader(body))
+	req, err := http.NewRequest("POST", requestURI, strings.NewReader(body))
 	if err != nil {
 		return nil, err
 	}
-	c.applyDefaults(req)
+	c.ApplyDefaults(req)
 
-	fmt.Printf("Performing POST request to %s\n", requestUri)
+	fmt.Printf("Performing POST request to %s\n", requestURI)
 
 	return performRequest(req)
 
 }
 
+// Put performs a PUT request to the Vimeo API with urlStr path and params as body.
 func (c *Client) Put(urlStr string) (*http.Response, error) {
 
-	requestUri := buildRequestUrl(urlStr)
-	req, err := http.NewRequest("PUT", requestUri, nil)
+	requestURI := BuildRequestURL(urlStr)
+	req, err := http.NewRequest("PUT", requestURI, nil)
 
 	if err != nil {
 		return nil, err
 	}
 
-	c.applyDefaults(req)
+	c.ApplyDefaults(req)
 
-	fmt.Printf("Performing PUT request to %s\n", requestUri)
+	fmt.Printf("Performing PUT request to %s\n", requestURI)
 
 	return performRequest(req)
 
 }
 
+// Delete performs a DELETE request to the Vimeo API with urlStr path and params as body.
 func (c *Client) Delete(urlStr string) (*http.Response, error) {
 
-	requestUri := buildRequestUrl(urlStr)
-	req, err := http.NewRequest("DELETE", requestUri, nil)
+	requestURI := BuildRequestURL(urlStr)
+	req, err := http.NewRequest("DELETE", requestURI, nil)
 
 	if err != nil {
 		return nil, err
 	}
 
-	c.applyDefaults(req)
+	c.ApplyDefaults(req)
 
-	fmt.Printf("Performing DELETE request to %s\n", requestUri)
+	fmt.Printf("Performing DELETE request to %s\n", requestURI)
 
 	return performRequest(req)
 }

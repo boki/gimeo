@@ -6,7 +6,7 @@ import (
 	. "github.com/julianedialkova/gimeo/data"
 )
 
-//List all endpoints
+// ListAll lists all endpoints as URI templates
 func (c *Client) ListAll() (*Endpoints, error) {
 	resp, err := c.Get("/", nil)
 
@@ -17,7 +17,7 @@ func (c *Client) ListAll() (*Endpoints, error) {
 
 	data := &Endpoints{}
 
-	err = c.processRequestData(200,resp, data)
+	err = c.processRequestData(200, resp, data)
 	return data, err
 
 }
