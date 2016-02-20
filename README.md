@@ -40,43 +40,51 @@ There are two ways to make requests to the Vimeo API - through authenticated and
 
   This token uses the user. It interacts on behalf of the authenticated user. In order to generate one, you should:
 
-  ```
-  client.GenerateАuthAccessToken(scopes, "redirectURI", "state")
-  ```
-  Where scopes look like this: `[]string{"public"}`.
+  GenerateAuthAccessToken is the first step of the redirect process is to send the user's client (browser) to vimeo.com. This is generally accomplished by providing the authorize url as a link on a webpage.
+
+    ```
+    client.GenerateАuthAccessToken("redirectURI", scopes, "state")
+    ```
+    Where scopes look like this: `[]string{"public"}`.
 
 |  Name         |  Description
 |--------------|-------------
 |  redirectURI  | This must be required, and must match your app callback URL
 |  state        | A unique value which the client will return alongside access tokens
 
+  If the user accepts your app, they are redirected to your redirect_uri along with two parameters.
 
+|  Name         |  Description
+|--------------|-------------
+|  code        | A string token you must exchange for your access token
+|  state       |The state you provided earlier. You must validate that this matches your original state. If the state does not match, you should not attempt to exchange the authorization code.
+
+When the user returns to your site, you must exchange the code for your access token. Make an HTTP POST request to https://api.vimeo.com/oauth/access_token with your authorization header, and the following parameters.
+
+
+    ```
+    client.GetToken("code", "redirectURI")
+    ```
 
 ### Make a request
 When you have all ready making a request is really simple:
 
 ```
-client.Request(`
-  {
-    "path"  : "/me/videos",
-    "query" : {
-        "per_page" : "1"
-  }
-`)
-```
+params := &Parameters{
+	"per_page": 10,
+ }
 
-Values you can put in the request are: `method`, `path`, `query` and `headers`.
+ client.GetMyAlbums(params)
+```
 
 
 ### Upload a video
-You may also upload a video or replace it.
+You may also upload a video.
 
 1. Upload a video
   ```
-  client.uploadVideo("/path/to/video.mp4", nil)
-  ```
-
-1. Replace a video
-  ```
-  client.uploadVideo("/path/to/video.mp4", "/videos/videoToReplace")
+  params := &Parameters{
+	 	"type": "streaming",
+	 }
+  client.Upload("/path/to/video.mp4")
   ```
