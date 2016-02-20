@@ -91,14 +91,10 @@ var _ = Describe("Gimeo", func() {
 				client = Vimeo(username, secret, token)
 				result = "{ response: correct }"
 				statusCode = http.StatusOK
-				// result := []byte("Correct!")
 
 				server.AppendHandlers(
 					ghttp.CombineHandlers(
 						ghttp.VerifyRequest("GET", "/test"),
-						// ghttp.VerifyHeader(http.Header{
-						//     "X-Sprocket-API-Version": []string{"1.0"},
-						// }),
 						ghttp.RespondWithJSONEncoded(statusCode, result),
 					),
 				)
@@ -107,12 +103,31 @@ var _ = Describe("Gimeo", func() {
 			It("should return the correct response", func() {
 				resp, err := client.Get("/test", nil)
 				Ω(err).Should(BeNil())
-				// Ω(resp).Should(Equal(result)
+				Ω(resp.StatusCode).Should(Equal(statusCode))
 				body, _ := ioutil.ReadAll(resp.Body)
-				fmt.Println(string(body))
-				fmt.Println("{ response: correct }")
-				Ω(body).Should(Equal([]byte(result)))
+				Ω(body[1 : len(body)-1]).Should(Equal([]byte(result)))
+			})
+		})
 
+		Context("when the request doesn't succeed", func() {
+			BeforeEach(func() {
+				client = Vimeo(username, secret, token)
+				statusCode = http.StatusNotFound
+
+				server.AppendHandlers(
+					ghttp.CombineHandlers(
+						ghttp.VerifyRequest("GET", "/test"),
+						ghttp.RespondWithJSONEncoded(statusCode, ""),
+					),
+				)
+			})
+
+			It("should return the correct response", func() {
+				resp, err := client.Get("/test", nil)
+				Ω(err).Should(BeNil())
+				Ω(resp.StatusCode).Should(Equal(statusCode))
+				body, _ := ioutil.ReadAll(resp.Body)
+				Ω(body[1 : len(body)-1]).Should(Equal([]byte("")))
 			})
 		})
 	})
