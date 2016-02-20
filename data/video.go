@@ -1,11 +1,11 @@
 package data
 
 type VideoData struct {
-	Total    int                `json:"total,omitempty"`
-	Page     int                `json:"page, omitempty"`
-	Per_page int                `json:"per_page, omitempty"`
-	Paging   Paging             `json:"paging, omitempty"`
-	Data     []VideoDataElement `json:"data,omitempty"`
+	Total   int                `json:"total,omitempty"`
+	Page    int                `json:"page, omitempty"`
+	PerPage int                `json:"per_page, omitempty"`
+	Paging  Paging             `json:"paging, omitempty"`
+	Data    []VideoDataElement `json:"data,omitempty"`
 }
 
 type VideoDataElement struct {
@@ -28,14 +28,14 @@ type VideoDataElement struct {
 	Privacy       VideoPrivacy  `json:"privacy,omitempty"`
 	Tags          []Tag         `json:"tags,omitempty"`
 	Stats         Stats         `json:"stats,omitempty"`
-	App           App        `json:"app, omitempty"`
+	App           App           `json:"app, omitempty"`
 	Status        string        `json:"status, omitempty"`
 	// EmbedPresets  ?        `json:"embed_presets, omitempty"`
 }
 
 type App struct {
-	Name string        `json:"uri, omitempty"`
-	Uri  string        `json:"name, omitempty"`
+	Name string `json:"uri, omitempty"`
+	URI  string `json:"name, omitempty"`
 }
 
 type Stats struct {
@@ -65,8 +65,8 @@ type TagsConnections struct {
 type VideoPrivacy struct {
 	View     string `json:"view,omitempty"`
 	Embed    string `json:"embed,omitempty"`
-	Download bool `json:"download,omitempty"`
-	Add      bool `json:"add,omitempty"`
+	Download bool   `json:"download,omitempty"`
+	Add      bool   `json:"add,omitempty"`
 	Comments string `json:"comments,omitempty"`
 }
 
@@ -86,6 +86,5 @@ type VideoConnections struct {
 
 type VideoInteractios struct {
 	WatchLater InteractionInfo `json:"watchlater,omitempty"`
-	Like InteractionInfo `json:"like,omitempty"`
-	
+	Like       InteractionInfo `json:"like,omitempty"`
 }

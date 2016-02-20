@@ -13,13 +13,12 @@ type Size struct {
 	Link   string `json:"link,omitempty"`
 }
 
-
 type InteractionInfo struct {
-	Added      bool   `json:"added,omitempty"`
-	Added_time string `json:"added_time,omitempty"`
-	Type       string `json:"type,omitempty"`
-	Title      string `json:"title,omitempty"`
-	Uri        string `json:"uri,omitempty"`
+	Added     bool   `json:"added,omitempty"`
+	AddedTime string `json:"added_time,omitempty"`
+	Type      string `json:"type,omitempty"`
+	Title     string `json:"title,omitempty"`
+	URI       string `json:"uri,omitempty"`
 }
 
 type ConnectionInfo struct {
@@ -32,11 +31,9 @@ type Channels struct {
 	Total int `json"total,omitempty"`
 }
 
-
 type Paging struct {
 	Next     string `json:"next,omitempty"`
 	Previous string `json:"previous,omitempty"`
 	First    string `json:"first,omitempty"`
 	Last     string `json:"last,omitempty"`
 }
-
