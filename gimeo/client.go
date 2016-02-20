@@ -2,7 +2,6 @@ package gimeo
 
 import (
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
 	"net/http"
 )
@@ -90,14 +89,12 @@ func (c *Client) setToken(resp *http.Response) error {
 		if err != nil {
 			return err
 		}
-		response := make(map[string]string)
+		response := make(map[string]interface{})
 		err = json.Unmarshal(body, &response)
 		if err != nil {
 			return err
 		}
-		c.accessToken = response["access_token"]
-		fmt.Println(response)
+		c.accessToken = response["access_token"].(string)
 	}
-
 	return nil
 }
