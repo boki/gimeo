@@ -361,10 +361,9 @@ func (c *Client) UserFollowingChannel(user, channel string, params *Parameters) 
 		return true, nil
 	} else if resp.StatusCode == 404 {
 		return false, nil
-	} else {
-		fmt.Printf("Request returned %s.\n", resp.Status)
-		return false, fmt.Errorf("Request returned %s.\n", resp.Status)
 	}
+	fmt.Printf("Request returned %s.\n", resp.Status)
+	return false, fmt.Errorf("request returned %s", resp.Status)
 }
 
 //UserFollowChannel subscribes to a Channel.
@@ -408,10 +407,9 @@ func (c *Client) UserFollowingCategory(user, category string, params *Parameters
 		return true, nil
 	} else if resp.StatusCode == 404 {
 		return false, nil
-	} else {
-		fmt.Printf("Request returned %s.\n", resp.Status)
-		return false, fmt.Errorf("Request returned %s.\n", resp.Status)
 	}
+	fmt.Printf("Request returned %s.\n", resp.Status)
+	return false, fmt.Errorf("request returned %s", resp.Status)
 }
 
 //UserFollowCategory subscribes to a category
@@ -484,10 +482,9 @@ func (c *Client) UserFollowingGroup(user, group string, params *Parameters) (boo
 		return true, nil
 	} else if resp.StatusCode == 404 {
 		return false, nil
-	} else {
-		fmt.Printf("Request returned %s.\n", resp.Status)
-		return false, fmt.Errorf("Request returned %s.\n", resp.Status)
 	}
+	fmt.Printf("Request returned %s.\n", resp.Status)
+	return false, fmt.Errorf("request returned %s", resp.Status)
 }
 
 //UserFollowGroup joins a group
@@ -605,9 +602,9 @@ func (c *Client) UserFollowingUser(user, followed string, params *Parameters) (b
 	} else if resp.StatusCode == 404 {
 		return false, nil
 	} else {
-		fmt.Printf("Request returned %s.\n", resp.Status)
-		return false, fmt.Errorf("Request returned %s.\n", resp.Status)
 	}
+	fmt.Printf("Request returned %s.\n", resp.Status)
+	return false, fmt.Errorf("request returned %s", resp.Status)
 }
 
 //UserFollowUser follows an user
@@ -685,10 +682,9 @@ func (c *Client) UserLikingVideo(user, video string, params *Parameters) (bool, 
 		return true, nil
 	} else if resp.StatusCode == 404 {
 		return false, nil
-	} else {
-		fmt.Printf("Request returned %s.\n", resp.Status)
-		return false, fmt.Errorf("Request returned %s.\n", resp.Status)
 	}
+	fmt.Printf("Request returned %s.\n", resp.Status)
+	return false, fmt.Errorf("request returned %s", resp.Status)
 }
 
 // UserLikeVideo likes a video
@@ -876,10 +872,9 @@ func (c *Client) UserPortfoliosContaintsVideo(user, portfolio, video string, par
 		return true, nil
 	} else if resp.StatusCode == 404 {
 		return false, nil
-	} else {
-		fmt.Printf("Request returned %s.\n", resp.Status)
-		return false, fmt.Errorf("Request returned %s.\n", resp.Status)
 	}
+	fmt.Printf("Request returned %s.\n", resp.Status)
+	return false, fmt.Errorf("request returned %s", resp.Status)
 }
 
 // UserPortfoliosAddVideo adds a video to the Portfolio.
@@ -1075,10 +1070,9 @@ func (c *Client) CheckVideoInUserWatchedlater(user, video string, params *Parame
 		return true, nil
 	} else if resp.StatusCode == 404 {
 		return false, nil
-	} else {
-		fmt.Printf("Request returned %s.\n", resp.Status)
-		return false, fmt.Errorf("Request returned %s.\n", resp.Status)
 	}
+	fmt.Printf("Request returned %s.\n", resp.Status)
+	return false, fmt.Errorf("request returned %s", resp.Status)
 }
 
 // UserAddWatchLater adds a video to the authenticated user's watch later list.

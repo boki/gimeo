@@ -163,7 +163,7 @@ func (c *Client) Delete(urlStr string) (*http.Response, error) {
 func (c *Client) processRequestData(status int, resp *http.Response, data interface{}) error {
 	if resp.StatusCode != status {
 		fmt.Printf("Request returned %s.\n", resp.Status)
-		return fmt.Errorf("Request returned %s.\n", resp.Status)
+		return fmt.Errorf("request returned %s", resp.Status)
 	}
 
 	body, err := ioutil.ReadAll(resp.Body)
@@ -182,7 +182,7 @@ func (c *Client) processRequestData(status int, resp *http.Response, data interf
 func (c *Client) processRequestNoData(resp *http.Response) error {
 	if resp.StatusCode != 204 {
 		fmt.Printf("Request returned %s.\n", resp.Status)
-		return fmt.Errorf("Request returned %s.\n", resp.Status)
+		return fmt.Errorf("request returned %s", resp.Status)
 	}
 	return nil
 }
