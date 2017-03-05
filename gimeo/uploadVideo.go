@@ -59,7 +59,6 @@ func (c *Client) Verify(completeURI string) (*http.Response, error) {
 	resp, err := c.Delete(completeURI)
 	bod, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
-		fmt.Println("Could not read requests body")
 		return nil, err
 	}
 

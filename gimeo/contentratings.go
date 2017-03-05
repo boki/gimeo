@@ -1,8 +1,6 @@
 package gimeo
 
 import (
-	"fmt"
-
 	. "github.com/julianedialkova/gimeo/data"
 )
 
@@ -11,7 +9,6 @@ func (c *Client) GetContentRatings(params *Parameters) (*CommonsData, error) {
 	resp, err := c.Get("/contentratings", params)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return nil, err
 	}
 

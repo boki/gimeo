@@ -168,13 +168,11 @@ func (c *Client) processRequestData(status int, resp *http.Response, data interf
 
 	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
-		fmt.Println("Could not read requests body")
 		return err
 	}
 
 	err = json.Unmarshal(body, &data)
 	if err != nil {
-		fmt.Println("Could not parse body")
 		return err
 	}
 

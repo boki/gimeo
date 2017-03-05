@@ -25,7 +25,6 @@ func (c *Client) GetChannels(params *Parameters) (*ChannelData, error) {
 	resp, err := c.Get("/channels", params)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return nil, err
 	}
 
@@ -46,7 +45,6 @@ func (c *Client) CreateChannel(params *Parameters) (map[string]interface{}, erro
 	resp, err := c.Post("/channels", params)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return nil, err
 	}
 
@@ -62,7 +60,6 @@ func (c *Client) GetChannel(channel string, params *Parameters) (*ChannelDataEle
 	resp, err := c.Get(uri, params)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return nil, err
 	}
 
@@ -84,7 +81,6 @@ func (c *Client) PatchChannel(channel string, params *Parameters) (*ChannelDataE
 	resp, err := c.Patch(uri, params)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return nil, err
 	}
 
@@ -100,7 +96,6 @@ func (c *Client) DeleteChannel(channel string, params *Parameters) (*ChannelData
 	resp, err := c.Delete(uri)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return nil, err
 	}
 
@@ -130,7 +125,6 @@ func (c *Client) GetChannelUsers(channel string, params *Parameters) (map[string
 	resp, err := c.Get(uri, params)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return nil, err
 	}
 
@@ -168,7 +162,6 @@ func (c *Client) GetChannelVideos(channel string, params *Parameters) (*VideoDat
 	resp, err := c.Get(uri, params)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return nil, err
 	}
 
@@ -184,7 +177,6 @@ func (c *Client) CheckIfVideoInChannel(channel, video string, params *Parameters
 	resp, err := c.Get(uri, params)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return nil, err
 	}
 
@@ -200,7 +192,6 @@ func (c *Client) PutVideoInChannel(channel, video string, params *Parameters) er
 	resp, err := c.Put(uri)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return err
 	}
 
@@ -214,7 +205,6 @@ func (c *Client) DeleteVideoFromChannel(channel, video string, params *Parameter
 	resp, err := c.Delete(uri)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return err
 	}
 

@@ -25,7 +25,6 @@ func (c *Client) GetGroups(params *Parameters) (*GroupData, error) {
 	resp, err := c.Get("/groups", params)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return nil, err
 	}
 
@@ -41,7 +40,6 @@ func (c *Client) CreateGroup(params *Parameters) (*GroupDataElement, error) {
 	resp, err := c.Post("/groups", params)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return nil, err
 	}
 
@@ -57,7 +55,6 @@ func (c *Client) GetGroup(group string, params *Parameters) (*GroupData, error) 
 	resp, err := c.Get(uri, params)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return nil, err
 	}
 
@@ -74,7 +71,6 @@ func (c *Client) DeleteGroup(group string, params *Parameters) error {
 	resp, err := c.Delete(uri)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return err
 	}
 
@@ -100,7 +96,6 @@ func (c *Client) GetGroupUsers(group string, params *Parameters) (*UserData, err
 	resp, err := c.Get(uri, params)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return nil, err
 	}
 
@@ -135,7 +130,6 @@ func (c *Client) GetGroupVideos(group string, params *Parameters) (*VideoData, e
 	resp, err := c.Get(uri, params)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return nil, err
 	}
 
@@ -151,7 +145,6 @@ func (c *Client) CheckIfVideoInGroup(group, video string, params *Parameters) (*
 	resp, err := c.Get(uri, params)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return nil, err
 	}
 
@@ -168,7 +161,6 @@ func (c *Client) PutVideoInGroup(group, video string, params *Parameters) error 
 	resp, err := c.Put(uri)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return err
 	}
 
@@ -183,7 +175,6 @@ func (c *Client) DeleteVideoFromGroup(group, video string, params *Parameters) e
 	resp, err := c.Delete(uri)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return err
 	}
 	err = c.processRequestNoData(resp)

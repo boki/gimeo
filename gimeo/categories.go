@@ -15,7 +15,6 @@ func (c *Client) GetCategories(params *Parameters) (*CategoryData, error) {
 	resp, err := c.Get("/categories", params)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return nil, err
 	}
 
@@ -30,7 +29,6 @@ func (c *Client) GetCategory(category string, params *Parameters) (*CategoryData
 	resp, err := c.Get(uri, params)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return nil, err
 	}
 
@@ -57,7 +55,6 @@ func (c *Client) GetCategoryChannels(category string, params *Parameters) (*Chan
 	resp, err := c.Get(uri, params)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return nil, err
 	}
 
@@ -84,7 +81,6 @@ func (c *Client) GetCategoryGroups(group string, params *Parameters) (*GroupData
 	resp, err := c.Get(uri, params)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return nil, err
 	}
 
@@ -111,7 +107,6 @@ func (c *Client) GetCategoryVideos(category string, params *Parameters) (*VideoD
 	resp, err := c.Get(uri, params)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return nil, err
 	}
 	data := &VideoData{}
@@ -137,7 +132,6 @@ func (c *Client) CheckIfVideoInCategory(category, video string, params *Paramete
 	resp, err := c.Get(uri, params)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return nil, err
 	}
 

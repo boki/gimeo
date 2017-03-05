@@ -35,7 +35,6 @@ func (c *Client) GetVideos(params *Parameters) (*VideoData, error) {
 	resp, err := c.Get("/videos", params)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return nil, err
 	}
 
@@ -51,7 +50,6 @@ func (c *Client) GetVideo(video string, params *Parameters) (*VideoDataElement, 
 	resp, err := c.Get(uri, params)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return nil, err
 	}
 
@@ -127,7 +125,6 @@ func (c *Client) ChangeVideo(video string, params *Parameters) (*VideoDataElemen
 	resp, err := c.Patch(uri, params)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return nil, err
 	}
 
@@ -144,7 +141,6 @@ func (c *Client) DeleteVideo(video string, params *Parameters) error {
 	resp, err := c.Delete(uri)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return err
 	}
 
@@ -164,7 +160,6 @@ func (c *Client) ReplaceVideo(video string, params *Parameters) error {
 	resp, err := c.Put(uri)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return err
 	}
 
@@ -188,7 +183,6 @@ func (c *Client) GetVideoCredits(video string, params *Parameters) (*CreditsData
 	resp, err := c.Get(uri, params)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return nil, err
 	}
 
@@ -209,7 +203,6 @@ func (c *Client) AddCreditToVideo(video string, params *Parameters) (*CreditsDat
 	resp, err := c.Post(uri, params)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return nil, err
 	}
 
@@ -230,7 +223,6 @@ func (c *Client) GetRelatedVideos(video string, params *Parameters) (*VideoData,
 	resp, err := c.Get(uri, params)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return nil, err
 	}
 
@@ -248,8 +240,6 @@ func (c *Client) GetVideoCategories(video string, params *Parameters) (*Category
 	uri := fmt.Sprintf("/videos/%s/categories", video)
 	resp, err := c.Get(uri, params)
 	if err != nil {
-		fmt.Println("Could not execute request")
-
 		return nil, err
 	}
 
@@ -266,7 +256,6 @@ func (c *Client) AddVideoCategories(video string, params *Parameters) error {
 	resp, err := c.Put(uri)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return err
 	}
 
@@ -278,7 +267,6 @@ func (c *Client) GetVideoCredit(video, credit string, params *Parameters) (*Cred
 	uri := fmt.Sprintf("/videos/%s/credits/%s", video, credit)
 	resp, err := c.Get(uri, params)
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return nil, err
 	}
 
@@ -295,7 +283,6 @@ func (c *Client) ChangeVideoCredit(video, credit string, params *Parameters) (*P
 	resp, err := c.Patch(uri, params)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return nil, err
 	}
 
@@ -312,7 +299,6 @@ func (c *Client) DeleteVideoCredit(video, credit string, params *Parameters) err
 	resp, err := c.Delete(uri)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return err
 	}
 
@@ -335,7 +321,6 @@ func (c *Client) GetVideoComments(video string, params *Parameters) (*CommentDat
 	uri := fmt.Sprintf("/videos/%s/comments", video)
 	resp, err := c.Get(uri, params)
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return nil, err
 	}
 
@@ -351,7 +336,6 @@ func (c *Client) CommentVideo(video string, params *Parameters) (*CommentDataEle
 	resp, err := c.Post(uri, params)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return nil, err
 	}
 
@@ -367,7 +351,6 @@ func (c *Client) ChangeVideoComment(video, comment string, params *Parameters) (
 	resp, err := c.Patch(uri, params)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return nil, err
 	}
 
@@ -384,7 +367,6 @@ func (c *Client) DeleteVideoComment(video, comment string, params *Parameters) e
 	resp, err := c.Delete(uri)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return err
 	}
 
@@ -400,7 +382,6 @@ func (c *Client) GetVideoCommentReplies(video, comment string, params *Parameter
 	uri := fmt.Sprintf("/videos/%s/comments/%s/replies", video, comment)
 	resp, err := c.Get(uri, params)
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return nil, err
 	}
 
@@ -418,7 +399,6 @@ func (c *Client) ReplyToCommentVideo(video, comment string, params *Parameters) 
 	resp, err := c.Post(uri, params)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return nil, err
 	}
 
@@ -433,7 +413,6 @@ func (c *Client) GetVideoPictures(video string, params *Parameters) (*PicturesDa
 	uri := fmt.Sprintf("/videos/%s/pictures", video)
 	resp, err := c.Get(uri, params)
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return nil, err
 	}
 
@@ -450,7 +429,6 @@ func (c *Client) AddPictureToVideo(video string, params *Parameters) (*VideoData
 	resp, err := c.Post(uri, params)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return nil, err
 	}
 
@@ -465,7 +443,6 @@ func (c *Client) GetVideoPicture(video, picture string, params *Parameters) (*Pi
 	uri := fmt.Sprintf("/videos/%s/pictures/%s", video, picture)
 	resp, err := c.Get(uri, params)
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return nil, err
 	}
 
@@ -482,7 +459,6 @@ func (c *Client) ChangeVideoPicture(video, picture string, params *Parameters) (
 	resp, err := c.Patch(uri, params)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return nil, err
 	}
 
@@ -499,7 +475,6 @@ func (c *Client) DeleteVideoPicture(video, picture string, params *Parameters) e
 	resp, err := c.Delete(uri)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return err
 	}
 
@@ -522,7 +497,6 @@ func (c *Client) GetVideoLikes(video string, params *Parameters) (*LikesData, er
 	uri := fmt.Sprintf("/videos/%s/likes", video)
 	resp, err := c.Get(uri, params)
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return nil, err
 	}
 
@@ -537,7 +511,6 @@ func (c *Client) GetVideoTags(video string, params *Parameters) (*TagsData, erro
 	uri := fmt.Sprintf("/videos/%s/tags", video)
 	resp, err := c.Get(uri, params)
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return nil, err
 	}
 
@@ -552,7 +525,6 @@ func (c *Client) CheckVideoTag(video, tag string, params *Parameters) (*TagsData
 	uri := fmt.Sprintf("/videos/%s/tags/%s", video, tag)
 	resp, err := c.Get(uri, params)
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return nil, err
 	}
 
@@ -569,7 +541,6 @@ func (c *Client) VideoPutTag(video, tag string, params *Parameters) error {
 	resp, err := c.Put(uri)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return err
 	}
 
@@ -584,7 +555,6 @@ func (c *Client) DeleteVideoTag(video, tag string, params *Parameters) error {
 	resp, err := c.Delete(uri)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return err
 	}
 
@@ -597,7 +567,6 @@ func (c *Client) GetVideoUsers(video string, params *Parameters) (*UserData, err
 	uri := fmt.Sprintf("/videos/%s/privacy/users", video)
 	resp, err := c.Get(uri, params)
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return nil, err
 	}
 
@@ -614,7 +583,6 @@ func (c *Client) AddVideoUsers(video string, params *Parameters) (*UserData, err
 	resp, err := c.Put(uri)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return nil, err
 	}
 	data := &UserData{}
@@ -630,7 +598,6 @@ func (c *Client) AddVideoUser(video, user string, params *Parameters) error {
 	resp, err := c.Put(uri)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return err
 	}
 
@@ -645,7 +612,6 @@ func (c *Client) DeleteVideoUser(video, user string, params *Parameters) error {
 	resp, err := c.Delete(uri)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return err
 	}
 

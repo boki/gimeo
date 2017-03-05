@@ -22,7 +22,6 @@ func (c *Client) GetUsers(params *Parameters) (*UserData, error) {
 	resp, err := c.Get("/users", params)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return nil, err
 	}
 
@@ -38,7 +37,6 @@ func (c *Client) GetUser(user string, params *Parameters) (*User, error) {
 	resp, err := c.Get(uri, params)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return nil, err
 	}
 
@@ -78,7 +76,6 @@ func (c *Client) ChangeUser(user string, params *Parameters) (*User, error) {
 	resp, err := c.Patch(uri, params)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return nil, err
 	}
 
@@ -106,7 +103,6 @@ func (c *Client) GetUserAlbums(user string, params *Parameters) (*AlbumData, err
 	resp, err := c.Get(uri, params)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return nil, err
 	}
 
@@ -140,7 +136,6 @@ func (c *Client) PutInUserAlbums(user string, params *Parameters) (*AlbumDataEle
 	resp, err := c.Post(uri, params)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return nil, err
 	}
 
@@ -156,7 +151,6 @@ func (c *Client) GetUserAlbum(user string, album string, params *Parameters) (*A
 	resp, err := c.Get(uri, params)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return nil, err
 	}
 
@@ -189,7 +183,6 @@ func (c *Client) ChangeUserAlbum(user string, album string, params *Parameters) 
 	resp, err := c.Patch(uri, params)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return nil, err
 	}
 
@@ -206,7 +199,6 @@ func (c *Client) DeleteUserAlbum(user, album string, params *Parameters) error {
 	resp, err := c.Delete(uri)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return err
 	}
 
@@ -241,7 +233,6 @@ func (c *Client) GetUserAlbumVideos(user, album string, params *Parameters) (*Vi
 	resp, err := c.Get(uri, params)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return nil, err
 	}
 
@@ -257,7 +248,6 @@ func (c *Client) CheckIfVideoInUserAlbum(user, album, video string, params *Para
 	resp, err := c.Get(uri, params)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return nil, err
 	}
 
@@ -274,7 +264,6 @@ func (c *Client) PutVideoInUserAlbum(user, album, video string, params *Paramete
 	resp, err := c.Put(uri)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return err
 	}
 
@@ -289,12 +278,6 @@ func (c *Client) DeleteVideoFromUserAlbum(user, album, video string, params *Par
 	resp, err := c.Delete(uri)
 
 	if err != nil {
-		fmt.Println("Could not read requests body")
-		return err
-	}
-
-	if err != nil {
-		fmt.Println("Could not execute request")
 		return err
 	}
 
@@ -327,7 +310,6 @@ func (c *Client) GetUserAppearances(user string, params *Parameters) (*VideoData
 	resp, err := c.Get(uri, params)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return nil, err
 	}
 
@@ -357,7 +339,6 @@ func (c *Client) GetUserChannels(user string, params *Parameters) (*ChannelData,
 	resp, err := c.Get(uri, params)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return nil, err
 	}
 
@@ -373,7 +354,6 @@ func (c *Client) UserFollowingChannel(user, channel string, params *Parameters) 
 	resp, err := c.Get(uri, params)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return false, err
 	}
 
@@ -394,7 +374,6 @@ func (c *Client) UserFollowChannel(user, channel string, params *Parameters) err
 	resp, err := c.Put(uri)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return err
 	}
 
@@ -409,7 +388,6 @@ func (c *Client) UserUnfollowChannel(user, channel string, params *Parameters) e
 	resp, err := c.Delete(uri)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return err
 	}
 
@@ -423,7 +401,6 @@ func (c *Client) UserFollowingCategory(user, category string, params *Parameters
 	resp, err := c.Get(uri, params)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return false, err
 	}
 
@@ -444,7 +421,6 @@ func (c *Client) UserFollowCategory(user, category string, params *Parameters) e
 	resp, err := c.Put(uri)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return err
 	}
 
@@ -459,7 +435,6 @@ func (c *Client) UserUnfollowCategory(user, category string, params *Parameters)
 	resp, err := c.Delete(uri)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return err
 	}
 
@@ -487,7 +462,6 @@ func (c *Client) UserMyGroups(user string, params *Parameters) (*GroupData, erro
 	resp, err := c.Get(uri, params)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return nil, err
 	}
 
@@ -503,7 +477,6 @@ func (c *Client) UserFollowingGroup(user, group string, params *Parameters) (boo
 	resp, err := c.Get(uri, params)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return false, err
 	}
 
@@ -524,7 +497,6 @@ func (c *Client) UserFollowGroup(user, group string, params *Parameters) error {
 	resp, err := c.Put(uri)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return err
 	}
 
@@ -539,7 +511,6 @@ func (c *Client) UserUnfollowGroup(user, group string, params *Parameters) error
 	resp, err := c.Delete(uri)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return err
 	}
 
@@ -558,7 +529,6 @@ func (c *Client) GetUserFeed(user string, params *Parameters) (*FeedData, error)
 	resp, err := c.Get(uri, params)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return nil, err
 	}
 
@@ -584,7 +554,6 @@ func (c *Client) GetUserFollowers(user string, params *Parameters) (*FollowersDa
 	resp, err := c.Get(uri, params)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return nil, err
 	}
 
@@ -613,7 +582,6 @@ func (c *Client) GetUserFollowing(user string, params *Parameters) (*FollowersDa
 	resp, err := c.Get(uri, params)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return nil, err
 	}
 
@@ -629,7 +597,6 @@ func (c *Client) UserFollowingUser(user, followed string, params *Parameters) (b
 	resp, err := c.Get(uri, params)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return false, err
 	}
 
@@ -650,7 +617,6 @@ func (c *Client) UserFollowUser(user, followed string, params *Parameters) error
 	resp, err := c.Put(uri)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return err
 	}
 
@@ -665,7 +631,6 @@ func (c *Client) UserUnfollowUser(user, followed string, params *Parameters) err
 	resp, err := c.Delete(uri)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return err
 	}
 
@@ -698,7 +663,6 @@ func (c *Client) GetUserLikes(user string, params *Parameters) (*LikesData, erro
 	resp, err := c.Get(uri, params)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return nil, err
 	}
 
@@ -714,7 +678,6 @@ func (c *Client) UserLikingVideo(user, video string, params *Parameters) (bool, 
 	resp, err := c.Get(uri, params)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return false, err
 	}
 
@@ -735,7 +698,6 @@ func (c *Client) UserLikeVideo(user, video string, params *Parameters) error {
 	resp, err := c.Put(uri)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return err
 	}
 
@@ -750,7 +712,6 @@ func (c *Client) UserUnlikeVideo(user, video string, params *Parameters) error {
 	resp, err := c.Delete(uri)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return err
 	}
 
@@ -764,7 +725,6 @@ func (c *Client) GetUserPictures(user string, params *Parameters) (*PicturesData
 	resp, err := c.Get(uri, params)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return nil, err
 	}
 
@@ -781,7 +741,6 @@ func (c *Client) UserUploadPicture(user string, params *Parameters) (*Picture, e
 	resp, err := c.Post(uri, params)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return nil, err
 	}
 
@@ -797,7 +756,6 @@ func (c *Client) UserHasPicture(user, picture string, params *Parameters) (*Pict
 	resp, err := c.Get(uri, params)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return nil, err
 	}
 
@@ -813,7 +771,6 @@ func (c *Client) UserEditPicture(user, picture string, params *Parameters) (*Pic
 	resp, err := c.Patch(uri, params)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return nil, err
 	}
 
@@ -830,7 +787,6 @@ func (c *Client) DeleteUserPicture(user, picture string, params *Parameters) err
 	resp, err := c.Delete(uri)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return err
 	}
 
@@ -854,7 +810,6 @@ func (c *Client) GetUserPorfolios(user string, params *Parameters) (*PortfolioDa
 	resp, err := c.Get(uri, params)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return nil, err
 	}
 
@@ -870,7 +825,6 @@ func (c *Client) GetUserPortfolio(user, portfolio string, params *Parameters) (*
 	resp, err := c.Get(uri, params)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return nil, err
 	}
 
@@ -900,7 +854,6 @@ func (c *Client) GetUserPortfolioVideos(user, portfolio string, params *Paramete
 	resp, err := c.Get(uri, params)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return nil, err
 	}
 
@@ -916,7 +869,6 @@ func (c *Client) UserPortfoliosContaintsVideo(user, portfolio, video string, par
 	resp, err := c.Get(uri, params)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return false, err
 	}
 
@@ -937,7 +889,6 @@ func (c *Client) UserPortfoliosAddVideo(user, portfolio, video string, params *P
 	resp, err := c.Put(uri)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return err
 	}
 
@@ -952,7 +903,6 @@ func (c *Client) UserPortfoliosDeleteVideos(user, portfolio, video string, param
 	resp, err := c.Delete(uri)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return err
 	}
 
@@ -967,7 +917,6 @@ func (c *Client) GetUserWatchedVideos(user string, params *Parameters) (*VideoDa
 	resp, err := c.Get(uri, params)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return nil, err
 	}
 
@@ -983,7 +932,6 @@ func (c *Client) DeleteUserWatchedVideos(user string, params *Parameters) error 
 	resp, err := c.Delete(uri)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return err
 	}
 
@@ -998,7 +946,6 @@ func (c *Client) DeleteUserWatchedVideo(user, video string, params *Parameters) 
 	resp, err := c.Delete(uri)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return err
 	}
 
@@ -1013,7 +960,6 @@ func (c *Client) UserUploadVideo(user string, params *Parameters) (*AlbumDataEle
 	resp, err := c.Post(uri, params)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return nil, err
 	}
 
@@ -1055,7 +1001,6 @@ func (c *Client) GetUserVideos(user, params *Parameters) (*VideoData, error) {
 	resp, err := c.Get(uri, params)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return nil, err
 	}
 
@@ -1074,7 +1019,6 @@ func (c *Client) GetUserVideo(user, video string, params *Parameters) (*VideoDat
 	resp, err := c.Get(uri, params)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return nil, err
 	}
 
@@ -1109,7 +1053,6 @@ func (c *Client) GetUserWatchLater(user string, params *Parameters) (*VideoDataE
 	resp, err := c.Get(uri, params)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return nil, err
 	}
 
@@ -1125,7 +1068,6 @@ func (c *Client) CheckVideoInUserWatchedlater(user, video string, params *Parame
 	resp, err := c.Get(uri, params)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return false, err
 	}
 
@@ -1146,7 +1088,6 @@ func (c *Client) UserAddWatchLater(user, video string, params *Parameters) error
 	resp, err := c.Put(uri)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return err
 	}
 
@@ -1161,7 +1102,6 @@ func (c *Client) DeleteUserWatchlaterVideo(user, video string, params *Parameter
 	resp, err := c.Delete(uri)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return err
 	}
 

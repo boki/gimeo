@@ -12,7 +12,6 @@ func (c *Client) GetTag(tag string, params *Parameters) (*Tag, error) {
 	resp, err := c.Get(uri, params)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return nil, err
 	}
 
@@ -28,7 +27,6 @@ func (c *Client) GetTagVideos(tag string, params *Parameters) (*VideoData, error
 	resp, err := c.Get(uri, params)
 
 	if err != nil {
-		fmt.Println("Could not execute request")
 		return nil, err
 	}
 
