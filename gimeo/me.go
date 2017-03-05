@@ -257,6 +257,10 @@ func (c *Client) PutVideoInMyAlbum(album, video string, params *Parameters) erro
 func (c *Client) DeleteVideoFromMyAlbum(album, video string, params *Parameters) error {
 	uri := fmt.Sprintf("me/albums/%s/videos/%s", album, video)
 	resp, err := c.Delete(uri)
+	if err != nil {
+		fmt.Println("Could not execute request")
+		return err
+	}
 
 	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
@@ -265,11 +269,6 @@ func (c *Client) DeleteVideoFromMyAlbum(album, video string, params *Parameters)
 	}
 
 	fmt.Println(body)
-
-	if err != nil {
-		fmt.Println("Could not execute request")
-		return err
-	}
 
 	err = c.processRequestNoData(resp)
 	return err
