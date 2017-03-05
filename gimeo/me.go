@@ -256,7 +256,7 @@ func (c *Client) DeleteVideoFromMyAlbum(album, video string, params *Parameters)
 		return err
 	}
 
-	fmt.Println(body)
+	c.log.Println(body)
 
 	err = c.processRequestNoData(resp)
 	return err
@@ -337,7 +337,7 @@ func (c *Client) MeFollowingChannel(channel string, params *Parameters) (bool, e
 	} else if resp.StatusCode == 404 {
 		return false, nil
 	}
-	fmt.Printf("Request returned %s.\n", resp.Status)
+	c.log.Printf("Request returned %s.\n", resp.Status)
 	return false, fmt.Errorf("request returned %s", resp.Status)
 }
 
@@ -383,7 +383,7 @@ func (c *Client) MeFollowingCategory(category string, params *Parameters) (bool,
 	} else if resp.StatusCode == 404 {
 		return false, nil
 	}
-	fmt.Printf("Request returned %s.\n", resp.Status)
+	c.log.Printf("Request returned %s.\n", resp.Status)
 	return false, fmt.Errorf("request returned %s", resp.Status)
 }
 
@@ -457,7 +457,7 @@ func (c *Client) MeFollowingGroup(group string, params *Parameters) (bool, error
 	} else if resp.StatusCode == 404 {
 		return false, nil
 	}
-	fmt.Printf("Request returned %s.\n", resp.Status)
+	c.log.Printf("Request returned %s.\n", resp.Status)
 	return false, fmt.Errorf("request returned %s", resp.Status)
 }
 
@@ -573,7 +573,7 @@ func (c *Client) MeFollowingUser(user string, params *Parameters) (bool, error) 
 	} else if resp.StatusCode == 404 {
 		return false, nil
 	}
-	fmt.Printf("Request returned %s.\n", resp.Status)
+	c.log.Printf("Request returned %s.\n", resp.Status)
 	return false, fmt.Errorf("request returned %s", resp.Status)
 }
 
@@ -652,7 +652,7 @@ func (c *Client) MeLikingVideo(video string, params *Parameters) (bool, error) {
 	} else if resp.StatusCode == 404 {
 		return false, nil
 	}
-	fmt.Printf("Request returned %s.\n", resp.Status)
+	c.log.Printf("Request returned %s.\n", resp.Status)
 	return false, fmt.Errorf("request returned %s", resp.Status)
 }
 
@@ -838,7 +838,7 @@ func (c *Client) MyPortfoliosContaintsVideo(portfolio, video string, params *Par
 	} else if resp.StatusCode == 404 {
 		return false, nil
 	}
-	fmt.Printf("Request returned %s.\n", resp.Status)
+	c.log.Printf("Request returned %s.\n", resp.Status)
 	return false, fmt.Errorf("request returned %s", resp.Status)
 }
 
@@ -1033,7 +1033,7 @@ func (c *Client) CheckVideoInMyWatchedlater(video string, params *Parameters) (b
 	} else if resp.StatusCode == 404 {
 		return false, nil
 	}
-	fmt.Printf("Request returned %s.\n", resp.Status)
+	c.log.Printf("Request returned %s.\n", resp.Status)
 	return false, fmt.Errorf("request returned %s", resp.Status)
 }
 

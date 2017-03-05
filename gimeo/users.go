@@ -362,7 +362,7 @@ func (c *Client) UserFollowingChannel(user, channel string, params *Parameters) 
 	} else if resp.StatusCode == 404 {
 		return false, nil
 	}
-	fmt.Printf("Request returned %s.\n", resp.Status)
+	c.log.Printf("Request returned %s.\n", resp.Status)
 	return false, fmt.Errorf("request returned %s", resp.Status)
 }
 
@@ -408,7 +408,7 @@ func (c *Client) UserFollowingCategory(user, category string, params *Parameters
 	} else if resp.StatusCode == 404 {
 		return false, nil
 	}
-	fmt.Printf("Request returned %s.\n", resp.Status)
+	c.log.Printf("Request returned %s.\n", resp.Status)
 	return false, fmt.Errorf("request returned %s", resp.Status)
 }
 
@@ -483,7 +483,7 @@ func (c *Client) UserFollowingGroup(user, group string, params *Parameters) (boo
 	} else if resp.StatusCode == 404 {
 		return false, nil
 	}
-	fmt.Printf("Request returned %s.\n", resp.Status)
+	c.log.Printf("Request returned %s.\n", resp.Status)
 	return false, fmt.Errorf("request returned %s", resp.Status)
 }
 
@@ -603,7 +603,7 @@ func (c *Client) UserFollowingUser(user, followed string, params *Parameters) (b
 		return false, nil
 	} else {
 	}
-	fmt.Printf("Request returned %s.\n", resp.Status)
+	c.log.Printf("Request returned %s.\n", resp.Status)
 	return false, fmt.Errorf("request returned %s", resp.Status)
 }
 
@@ -683,7 +683,7 @@ func (c *Client) UserLikingVideo(user, video string, params *Parameters) (bool, 
 	} else if resp.StatusCode == 404 {
 		return false, nil
 	}
-	fmt.Printf("Request returned %s.\n", resp.Status)
+	c.log.Printf("Request returned %s.\n", resp.Status)
 	return false, fmt.Errorf("request returned %s", resp.Status)
 }
 
@@ -873,7 +873,7 @@ func (c *Client) UserPortfoliosContaintsVideo(user, portfolio, video string, par
 	} else if resp.StatusCode == 404 {
 		return false, nil
 	}
-	fmt.Printf("Request returned %s.\n", resp.Status)
+	c.log.Printf("Request returned %s.\n", resp.Status)
 	return false, fmt.Errorf("request returned %s", resp.Status)
 }
 
@@ -1071,7 +1071,7 @@ func (c *Client) CheckVideoInUserWatchedlater(user, video string, params *Parame
 	} else if resp.StatusCode == 404 {
 		return false, nil
 	}
-	fmt.Printf("Request returned %s.\n", resp.Status)
+	c.log.Printf("Request returned %s.\n", resp.Status)
 	return false, fmt.Errorf("request returned %s", resp.Status)
 }
 

@@ -3,14 +3,25 @@ package gimeo
 import (
 	"encoding/json"
 	"io/ioutil"
+	"log"
 	"net/http"
+	"os"
 )
+
+//Logger is the interface for log operations.
+type Logger interface {
+	//Printf prints to the logger. Arguments are handled in the manner of fmt.Printf.
+	Printf(format string, v ...interface{})
+	//Println prints to the logger. Arguments are handled in the manner of fmt.Println.
+	Println(v ...interface{})
+}
 
 //Client is the type of object that identifies the user.
 type Client struct {
 	clientID     string
 	clientSecret string
 	accessToken  string
+	log          Logger
 }
 
 //AuthEndpoints are the main authorization endpoints
@@ -28,11 +39,15 @@ var AuthenticationEndpoints = &AuthEndpoints{
 }
 
 // Vimeo creates a client to interact with the Vimeo API
-func Vimeo(clientID, clientSecret, accessToken string) *Client {
+func Vimeo(clientID, clientSecret, accessToken string, logger ...Logger) *Client {
+	if len(logger) == 0 || logger[0] == nil {
+		logger = []Logger{log.New(os.Stderr, "gimeo: ", log.LstdFlags)}
+	}
 	return &Client{
 		clientID:     clientID,
 		clientSecret: clientSecret,
 		accessToken:  accessToken,
+		log:          logger[0],
 	}
 }
 

@@ -75,7 +75,7 @@ func (c *Client) Get(urlStr string, params *Parameters) (*http.Response, error) 
 	}
 
 	c.ApplyDefaults(req)
-	fmt.Printf("Performing GET request to %s\n", requestURI)
+	c.log.Printf("Performing GET request to %s\n", requestURI)
 	if params != nil {
 		encoded := params.BuildRequestURL()
 		req.URL.RawQuery = encoded.Encode()
@@ -100,7 +100,7 @@ func (c *Client) Patch(urlStr string, params *Parameters) (*http.Response, error
 	}
 	c.ApplyDefaults(req)
 
-	fmt.Printf("Performing PATCH request to %s\n", requestURI)
+	c.log.Printf("Performing PATCH request to %s\n", requestURI)
 
 	return performRequest(req)
 }
@@ -119,7 +119,7 @@ func (c *Client) Post(urlStr string, params *Parameters) (*http.Response, error)
 	}
 	c.ApplyDefaults(req)
 
-	fmt.Printf("Performing POST request to %s\n", requestURI)
+	c.log.Printf("Performing POST request to %s\n", requestURI)
 
 	return performRequest(req)
 
@@ -137,7 +137,7 @@ func (c *Client) Put(urlStr string) (*http.Response, error) {
 
 	c.ApplyDefaults(req)
 
-	fmt.Printf("Performing PUT request to %s\n", requestURI)
+	c.log.Printf("Performing PUT request to %s\n", requestURI)
 
 	return performRequest(req)
 
@@ -155,14 +155,14 @@ func (c *Client) Delete(urlStr string) (*http.Response, error) {
 
 	c.ApplyDefaults(req)
 
-	fmt.Printf("Performing DELETE request to %s\n", requestURI)
+	c.log.Printf("Performing DELETE request to %s\n", requestURI)
 
 	return performRequest(req)
 }
 
 func (c *Client) processRequestData(status int, resp *http.Response, data interface{}) error {
 	if resp.StatusCode != status {
-		fmt.Printf("Request returned %s.\n", resp.Status)
+		c.log.Printf("Request returned %s.\n", resp.Status)
 		return fmt.Errorf("request returned %s", resp.Status)
 	}
 
@@ -181,7 +181,7 @@ func (c *Client) processRequestData(status int, resp *http.Response, data interf
 
 func (c *Client) processRequestNoData(resp *http.Response) error {
 	if resp.StatusCode != 204 {
-		fmt.Printf("Request returned %s.\n", resp.Status)
+		c.log.Printf("Request returned %s.\n", resp.Status)
 		return fmt.Errorf("request returned %s", resp.Status)
 	}
 	return nil

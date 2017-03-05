@@ -62,8 +62,8 @@ func (c *Client) Verify(completeURI string) (*http.Response, error) {
 		return nil, err
 	}
 
-	fmt.Println(string(bod))
-	fmt.Println(resp.Status)
+	c.log.Println(string(bod))
+	c.log.Println(resp.Status)
 
 	return resp, nil
 }
