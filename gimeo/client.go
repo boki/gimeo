@@ -6,6 +6,12 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"runtime"
+)
+
+const (
+	libVersion = "v1.0.0"
+	userAgent  = "gimeo/" + libVersion + " (" + runtime.GOOS + "/" + runtime.GOARCH + ")"
 )
 
 //Logger is the interface for log operations.
@@ -18,6 +24,7 @@ type Logger interface {
 
 //Client is the type of object that identifies the user.
 type Client struct {
+	UserAgent    string // optional additional User-Agent fragment
 	clientID     string
 	clientSecret string
 	accessToken  string
@@ -49,6 +56,14 @@ func Vimeo(clientID, clientSecret, accessToken string, logger ...Logger) *Client
 		accessToken:  accessToken,
 		log:          logger[0],
 	}
+}
+
+// UserAgent returns the user agent to use for requests.
+func (c *Client) userAgent() string {
+	if c.UserAgent == "" {
+		return userAgent
+	}
+	return c.UserAgent + " " + userAgent
 }
 
 // GenerateAuthAccessToken is the first step of the redirect process is to send the user's client (browser) to vimeo.com. This is generally accomplished by providing the authorize url as a link on a webpage.

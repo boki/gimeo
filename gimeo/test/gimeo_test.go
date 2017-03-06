@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"runtime"
 
 	. "github.com/julianedialkova/gimeo/gimeo"
 
@@ -38,6 +39,44 @@ var _ = Describe("Gimeo", func() {
 
 		BeforeEach(func() {
 			request, _ = http.NewRequest("GET", DefaultRequest.Hostname, nil)
+		})
+
+		Context("and the user has not set an optional user agent", func() {
+
+			const defUserAgent = "gimeo/v1.0.0 (" + runtime.GOOS + "/" + runtime.GOARCH + ")"
+
+			BeforeEach(func() {
+				client = &Client{}
+			})
+
+			It("should set the default user agent header", func() {
+				client.ApplyDefaults(request)
+				expectedValue := defUserAgent
+				Ω(request.Header.Get("User-Agent")).To(Equal(expectedValue))
+				for key, value := range *DefaultRequest.Headers {
+					Ω(request.Header.Get(key)).To(Equal(value))
+				}
+			})
+		})
+
+		Context("and the user has set an optional user agent", func() {
+
+			const defUserAgent = "gimeo/v1.0.0 (" + runtime.GOOS + "/" + runtime.GOARCH + ")"
+			const optionalUA = "Test"
+
+			BeforeEach(func() {
+				client = &Client{}
+			})
+
+			It("should set the user agent header", func() {
+				client.UserAgent = optionalUA
+				client.ApplyDefaults(request)
+				expectedValue := fmt.Sprintf("%s %s", optionalUA, defUserAgent)
+				Ω(request.Header.Get("User-Agent")).To(Equal(expectedValue))
+				for key, value := range *DefaultRequest.Headers {
+					Ω(request.Header.Get(key)).To(Equal(value))
+				}
+			})
 		})
 
 		Context("and the user has a token", func() {
