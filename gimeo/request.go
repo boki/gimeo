@@ -55,6 +55,7 @@ func (c *Client) ApplyDefaults(req *http.Request) {
 	for key, value := range *(DefaultRequest.Headers) {
 		req.Header.Set(key, value)
 	}
+	req.Header.Set("User-Agent", c.userAgent())
 	if c.accessToken == "" {
 		auth := []byte(fmt.Sprintf("%s:%s", c.clientID, c.clientSecret))
 		authHeader := base64.StdEncoding.EncodeToString(auth)
